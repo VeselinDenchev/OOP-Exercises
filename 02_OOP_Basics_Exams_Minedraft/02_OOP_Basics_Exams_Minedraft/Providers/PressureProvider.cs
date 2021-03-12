@@ -25,7 +25,7 @@
         public override double EnergyOutput {
             get
             {
-                return base.EnergyOutput;
+                return this.EnergyOutput;
             }
             set
             {

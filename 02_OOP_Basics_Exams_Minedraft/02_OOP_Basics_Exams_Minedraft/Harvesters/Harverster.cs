@@ -32,22 +32,6 @@
                 this.oreOutput = value;
             }
         }
-        public virtual double EnergyRequirement
-        {
-            get
-            {
-                return this.energyRequirement;
-            }
-            set
-            {
-                if (value < 0 || value > 20000)
-                {
-                    throw new ArgumentOutOfRangeException("Energy requirement must be between 0 and 20000!");
-                }
-
-                this.energyRequirement = value;
-            }
-        }
-
+        public abstract double EnergyRequirement { get; set; }
     }
 }

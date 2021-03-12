@@ -33,7 +33,7 @@
         {
             get
             {
-                return base.EnergyRequirement;
+                return this.EnergyRequirement;
             }
             set
             {

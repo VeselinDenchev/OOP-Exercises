@@ -27,7 +27,7 @@
         {
             get
             {
-                return base.OreOutput;
+                return this.OreOutput;
             }
             set
             {
@@ -47,7 +47,7 @@
         {
             get
             {
-                return base.EnergyRequirement;
+                return this.EnergyRequirement;
             }
             set
             {
