@@ -2,10 +2,11 @@
 {
     using System;
 
+    using P03.ExerciseFactoryPattern.Common;
     using P03.ExerciseFactoryPattern.Core.Controllers.Interfaces;
     using P03.ExerciseFactoryPattern.Factories;
     using P03.ExerciseFactoryPattern.Models.Interfaces;
-    using P03.ExerciseFactoryPattern.Common;
+
 
     public class InstrumentController : IController
     {
