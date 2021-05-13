@@ -1,6 +1,6 @@
 ﻿namespace _05_Exercise_Market_Store.Models
 {
-    using Exception = Constants.Exception;
+    using Constants;
 
     using System;
 
@@ -9,6 +9,7 @@
         private decimal turnoverForPreviousMonth;
 
         public SilverCard()
+            : base()
         {
             
         }
@@ -21,20 +22,25 @@
             }
             set
             {
-                if (value < 0)
+                bool isNegative = value < Constant.MIN_TURNOVER;
+
+                if (isNegative)
                 {
-                    throw new ArgumentOutOfRangeException(Exception.NEGATIVE_TURNOVER_EXCEPTION);
+                    throw new ArgumentOutOfRangeException(UserException.NEGATIVE_TURNOVER_EXCEPTION);
                 }
 
                 this.turnoverForPreviousMonth = value;
 
-                if (turnoverForPreviousMonth <= 300)
+                bool isLowerThanThreeHundredDollars 
+                    = this.turnoverForPreviousMonth <= Constant.SILVER_CARD_INITIAL_DISCOUNT_RATE_MAX_TURNOVER_VALUE;
+
+                if (isLowerThanThreeHundredDollars)
                 {
-                    this.DiscountRatePercantage = 2;
+                    this.DiscountRatePercantage = Constant.SILVER_AND_GOLD_CARDS_INITIAL_DISCOUNT_RATE_PERCANTAGE;
                 }
                 else
                 {
-                    this.DiscountRatePercantage = 3.5;
+                    this.DiscountRatePercantage = Constant.SILVER_CARD_MAX_DISCOUNT_RATE_PERCANTAGE;
                 }
             }
         }

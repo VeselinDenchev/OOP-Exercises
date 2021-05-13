@@ -1,6 +1,6 @@
 ﻿namespace _05_Exercise_Market_Store.Models
 {
-    using Exception = Constants.Exception;
+    using Constants;
 
     using System;
 
@@ -9,6 +9,7 @@
         protected decimal turnoverForPreviousMonth;
 
         public GoldCard()
+            : base()
         {
             
         }
@@ -21,18 +22,28 @@
             }
             set
             {
-                if (value < 0)
+                bool isNegative = value < Constant.MIN_TURNOVER;
+
+                if (isNegative)
                 {
-                    throw new ArgumentOutOfRangeException(Exception.NEGATIVE_TURNOVER_EXCEPTION);
+                    throw new ArgumentOutOfRangeException(UserException.NEGATIVE_TURNOVER_EXCEPTION);
                 }
 
                 this.turnoverForPreviousMonth = value;
 
-                this.DiscountRatePercantage = Decimal.ToDouble(turnoverForPreviousMonth / 100);
+                this.DiscountRatePercantage = Decimal.ToDouble(turnoverForPreviousMonth / Constant.PERCANTAGE_DIVIDER);
 
-                if (turnoverForPreviousMonth > 1000)
+                bool isLowerThanTwoPercent = this.DiscountRatePercantage < Constant.SILVER_AND_GOLD_CARDS_INITIAL_DISCOUNT_RATE_PERCANTAGE;
+                bool isBiggerThanMaxTurnoverValueWhenDiscountRateIsGrowing 
+                    = turnoverForPreviousMonth > Constant.GOLD_CARD_MAX_TURNOVER_VALUE_WHEN_DISCOUNT_RATE_IS_GROWING;
+
+                if (isLowerThanTwoPercent)
                 {
-                    this.DiscountRatePercantage = 10;
+                    this.DiscountRatePercantage = Constant.SILVER_AND_GOLD_CARDS_INITIAL_DISCOUNT_RATE_PERCANTAGE;
+                }
+                else if (isBiggerThanMaxTurnoverValueWhenDiscountRateIsGrowing)
+                {
+                    this.DiscountRatePercantage = Constant.GOLD_CARD_MAX_DISCOUNT_RATE_PERCANTAGE;
                 }
             }
         }

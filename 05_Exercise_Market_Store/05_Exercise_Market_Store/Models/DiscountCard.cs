@@ -11,7 +11,7 @@
         }
 
         public DiscountCard(string firstName, string lastName, decimal turnoverForPreviousMonth)
-            : base()
+            : this()
         {
             this.Id = Guid.NewGuid().ToString();
             this.FirstName = firstName;

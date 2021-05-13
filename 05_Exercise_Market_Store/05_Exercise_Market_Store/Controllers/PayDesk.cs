@@ -1,8 +1,9 @@
 ﻿namespace _05_Exercise_Market_Store.Controllers
 {
+    using Constants;
+
     using Models.Interfaces;
 
-    using System;
     using System.Text;
 
     public static class PayDesk
@@ -46,7 +47,7 @@
 
         public static decimal CalculateDiscount(decimal purchaseValue, double discountRatePercantage)
         {
-            decimal discount = purchaseValue * (decimal)discountRatePercantage / 100;
+            decimal discount = purchaseValue * (decimal)discountRatePercantage / Constant.PERCANTAGE_DIVIDER;
 
             return discount;
         }

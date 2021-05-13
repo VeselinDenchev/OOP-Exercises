@@ -1,6 +1,6 @@
 ﻿namespace _05_Exercise_Market_Store.Models
 {
-    using Exception = Constants.Exception;
+    using Constants;
 
     using System;
 
@@ -9,6 +9,7 @@
         private decimal turnoverForPreviousMonth;
 
         public BronzeCard()
+            : base()
         {
             
         }
@@ -21,24 +22,29 @@
             }
             set
             {
-                if (value < 0)
+                bool isNegative = value < Constant.MIN_TURNOVER;
+
+                if (isNegative)
                 {
-                    throw new ArgumentOutOfRangeException(Exception.NEGATIVE_TURNOVER_EXCEPTION);
+                    throw new ArgumentOutOfRangeException(UserException.NEGATIVE_TURNOVER_EXCEPTION);
                 }
 
                 this.turnoverForPreviousMonth = value;
 
-                if (turnoverForPreviousMonth < 100)
+                bool isLowerThanNoDiscountMaxValue = turnoverForPreviousMonth < Constant.BRONZE_CARD_NO_DISCOUNT_MAX_VALUE;
+                bool isLowerThanOnePercentDiscountRateMaxValue = turnoverForPreviousMonth < Constant.BRONZE_CARD_ONE_PERCENT_DISCOUNT_RATE_MAX_VALUE;
+
+                if (isLowerThanNoDiscountMaxValue)
                 {
-                    this.DiscountRatePercantage = 0;
+                    this.DiscountRatePercantage = Constant.BRONZE_CARD_NO_DISCOUNT_PERCANTAGE;
                 }
-                else if (turnoverForPreviousMonth < 300)
+                else if (isLowerThanOnePercentDiscountRateMaxValue)
                 {
-                    this.DiscountRatePercantage = 1;
+                    this.DiscountRatePercantage = Constant.BRONZE_CARD_DISCOUNT_RATE_PERCANTAGE_FOR_TURNOVER_BETWEEN_100_AND_300_DOLLARS;
                 }
                 else
                 {
-                    this.DiscountRatePercantage = 2.5;
+                    this.DiscountRatePercantage = Constant.BRONZE_CARD_MAX_DISCOUNT_RATE_PERCANTAGE;
                 }
             }
         }
