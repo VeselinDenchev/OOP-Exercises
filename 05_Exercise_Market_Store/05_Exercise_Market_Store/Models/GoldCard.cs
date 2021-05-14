@@ -33,13 +33,13 @@
 
                 this.DiscountRatePercantage = Decimal.ToDouble(turnoverForPreviousMonth / Constant.PERCANTAGE_DIVIDER);
 
-                bool isLowerThanTwoPercent = this.DiscountRatePercantage < Constant.SILVER_AND_GOLD_CARDS_INITIAL_DISCOUNT_RATE_PERCANTAGE;
+                bool isLowerThanTwoPercent = this.DiscountRatePercantage < Constant.GOLD_CARD_INITIAL_DISCOUNT_RATE_PERCANTAGE;
                 bool isBiggerThanMaxTurnoverValueWhenDiscountRateIsGrowing 
                     = turnoverForPreviousMonth > Constant.GOLD_CARD_MAX_TURNOVER_VALUE_WHEN_DISCOUNT_RATE_IS_GROWING;
 
                 if (isLowerThanTwoPercent)
                 {
-                    this.DiscountRatePercantage = Constant.SILVER_AND_GOLD_CARDS_INITIAL_DISCOUNT_RATE_PERCANTAGE;
+                    this.DiscountRatePercantage = Constant.GOLD_CARD_INITIAL_DISCOUNT_RATE_PERCANTAGE;
                 }
                 else if (isBiggerThanMaxTurnoverValueWhenDiscountRateIsGrowing)
                 {

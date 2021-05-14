@@ -36,7 +36,7 @@
 
                 if (isLowerThanThreeHundredDollars)
                 {
-                    this.DiscountRatePercantage = Constant.SILVER_AND_GOLD_CARDS_INITIAL_DISCOUNT_RATE_PERCANTAGE;
+                    this.DiscountRatePercantage = Constant.SILVER_CARD_INITIAL_DISCOUNT_RATE_PERCANTAGE;
                 }
                 else
                 {
