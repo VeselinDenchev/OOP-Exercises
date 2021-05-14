@@ -2,7 +2,7 @@
 {
     using Constants;
 
-    using Models.Interfaces;
+    using Models;
 
     using System;
     using System.Linq;
@@ -38,7 +38,7 @@
             }
 
             Object instance = Activator.CreateInstance(typeToCreate);
-            IDiscountCard discountCard = (IDiscountCard)instance;
+            DiscountCard discountCard = (DiscountCard)instance;
 
             discountCard.TurnoverForPreviousMonth = turnoverValue;
 
